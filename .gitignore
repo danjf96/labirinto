@@ -1,0 +1,10 @@
+# folders
+dist
+node_modules
+.vscode
+old
+
+# files
+
+package-lock.json
+

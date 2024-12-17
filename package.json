@@ -1,0 +1,20 @@
+{
+  "name": "labirinto",
+  "version": "1.0.0",
+  "description": "Jogo desenvolvido com base no curso: https://www.youtube.com/watch?v=SSlIJOD-JMU&list=PLclUTiUoLCbDog-vStY7VFHpFXJVML6EY&index=1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node log.js dev & vite --config vite.config.mts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  },
+  "dependencies": {
+    "phaser": "^3.87.0"
+  }
+}
