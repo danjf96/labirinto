@@ -4,7 +4,9 @@ class BootScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('progressBar', '../scenes/game/progressBar.png')
+    this.load.image('progressBar', 'src/assets/game/sprites/progressBar.png')
+
+    this.load.audio('main_song', 'src/assets/game/sfx/music.ogg')
   }
 
   create() {
