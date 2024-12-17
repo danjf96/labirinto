@@ -1,15 +1,15 @@
 class BootScene extends Phaser.Scene {
-    constructor() {
-        super({ key: "BootScene" });
-    }
+  constructor() {
+    super({ key: 'BootScene' })
+  }
 
-    preload() {
-        this.load.image('progressBar','../scenes/game/progressBar.png');   
-    }
+  preload() {
+    this.load.image('progressBar', '../scenes/game/progressBar.png')
+  }
 
-    create() {
-        this.scene.start("PreloadScene");
-    }
+  create() {
+    this.scene.start('PreloadScene')
+  }
 }
 
-export default BootScene;
+export default BootScene
