@@ -1,10 +1,16 @@
 import MusicPlayer from '../controls/MusicPlayer'
 
 class MenuScene extends Phaser.Scene {
-  playerMusic!: MusicPlayer
+  private playerMusic!: MusicPlayer
+  private enterKey: any
 
   constructor() {
     super({ key: 'MenuScene' })
+  }
+
+  initStage() {
+    this.playerMusic.stop()
+    this.scene.start('Stage1')
   }
 
   create() {
@@ -19,6 +25,15 @@ class MenuScene extends Phaser.Scene {
       { font: '40px emulogic', color: '#fff' },
     )
     txtLabirinto.setOrigin(0.5, 0.5)
+
+    this.tweens.add({
+      targets: txtLabirinto,
+      y: this.cameras.main.y + 50,
+      duration: 1000,
+      ease: 'Power2',
+      yoyo: false,
+      loop: 0,
+    })
 
     const txtPressStart = this.add.text(
       this.cameras.main.centerX,
@@ -37,14 +52,19 @@ class MenuScene extends Phaser.Scene {
       loop: 0,
     })
 
-    this.tweens.add({
-      targets: txtLabirinto,
-      y: this.cameras.main.y + 50,
-      duration: 1000,
-      ease: 'Power2',
-      yoyo: false,
-      loop: 0,
-    })
+    txtPressStart.setInteractive()
+
+    txtPressStart.on('pointerdown', this.initStage.bind(this))
+
+    this.enterKey = this.input.keyboard?.addKey(
+      Phaser.Input.Keyboard.KeyCodes.ENTER,
+    )
+  }
+
+  update(time: number, delta: number): void {
+    if (Phaser.Input.Keyboard.JustDown(this.enterKey)) {
+      this.initStage()
+    }
   }
 }
 

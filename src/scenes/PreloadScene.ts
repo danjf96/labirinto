@@ -4,7 +4,6 @@ class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('logo', '/cdn/images/img.png')
     const txtLoading = this.add.text(
       this.cameras.main.centerX,
       150,
@@ -23,6 +22,13 @@ class PreloadScene extends Phaser.Scene {
     this.load.on('progress', (value: number) => {
       progressBar.setScale(value, 1)
     })
+
+    this.load.image('logo', '/cdn/images/img.png')
+    this.load.image('ground', 'src/assets/game/sprites/ground.png')
+    this.load.image('block', 'src/assets/game/sprites/block.png')
+
+    //songs
+    this.load.audio('main_song', 'src/assets/game/sfx/music.ogg')
   }
 
   create() {
