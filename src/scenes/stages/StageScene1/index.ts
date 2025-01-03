@@ -45,6 +45,8 @@ class StageScene1 extends Phaser.Scene {
   }
 
   update(time: number, delta: number): void {
+    this.maze.setBlockColide()
+
     this.player?.movePlayer()
   }
 }

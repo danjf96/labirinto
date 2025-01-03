@@ -9,7 +9,7 @@ class Maze {
   constructor(scene: GameScene, grid: MazeGridType) {
     this.scene = scene
     this.grid = grid
-    this.blocks = this.scene.add.group()
+    this.blocks = this.scene.physics.add.staticGroup()
   }
 
   create() {
@@ -35,6 +35,10 @@ class Maze {
         }
       }
     }
+  }
+
+  setBlockColide() {
+    this.scene.physics.collide(this.scene.player.getSprite(), this.blocks)
   }
 }
 
