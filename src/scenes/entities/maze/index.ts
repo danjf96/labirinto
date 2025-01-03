@@ -1,9 +1,11 @@
+import { MazeGridType } from './types'
+
 class Maze {
   private scene: Phaser.Scene
-  private grid: number[][]
+  private grid: MazeGridType
   private blocks: Phaser.GameObjects.Group
 
-  constructor(scene: Phaser.Scene, grid: number[][]) {
+  constructor(scene: Phaser.Scene, grid: MazeGridType) {
     this.scene = scene
     this.grid = grid
     this.blocks = this.scene.add.group()

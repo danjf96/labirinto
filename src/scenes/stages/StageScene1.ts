@@ -1,5 +1,6 @@
 import MusicPlayer from '../../controls/MusicPlayer'
 import Maze from '../entities/maze'
+import { MazeGridType } from '../entities/maze/types'
 
 class StageScene1 extends Phaser.Scene {
   maze!: Maze
@@ -8,7 +9,7 @@ class StageScene1 extends Phaser.Scene {
   }
 
   preload() {
-    const mazeGrid = [
+    const mazeGrid: MazeGridType = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1],
       [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
