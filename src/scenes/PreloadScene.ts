@@ -27,6 +27,11 @@ class PreloadScene extends Phaser.Scene {
     this.load.image('ground', 'src/assets/game/sprites/ground.png')
     this.load.image('block', 'src/assets/game/sprites/block.png')
 
+    this.load.spritesheet('player', 'src/assets/player/sprites/player.png', {
+      frameWidth: 24,
+      frameHeight: 32,
+    })
+
     //songs
     this.load.audio('main_song', 'src/assets/game/sfx/music.ogg')
   }

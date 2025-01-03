@@ -1,11 +1,12 @@
+import GameScene from '../../interfaces/GameScene'
 import { MazeGridType } from './types'
 
 class Maze {
-  private scene: Phaser.Scene
+  private scene: GameScene
   private grid: MazeGridType
   private blocks: Phaser.GameObjects.Group
 
-  constructor(scene: Phaser.Scene, grid: MazeGridType) {
+  constructor(scene: GameScene, grid: MazeGridType) {
     this.scene = scene
     this.grid = grid
     this.blocks = this.scene.add.group()
@@ -25,6 +26,9 @@ class Maze {
 
             block.body.immovable = true
             block.enableBody = true
+            break
+          case 2:
+            this.scene.player.setPosition(x, y)
             break
           default:
             break
