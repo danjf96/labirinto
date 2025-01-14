@@ -1,5 +1,6 @@
 import MusicPlayer from '../../../controls/MusicPlayer'
 import Coin from '../../entities/coin'
+import { generatePossiblePositions } from '../../entities/coin/helpers'
 import { CoinPositionProps } from '../../entities/coin/types'
 import Maze from '../../entities/maze'
 import { MazeGridType } from '../../entities/maze/types'
@@ -38,9 +39,9 @@ class StageScene1 extends Phaser.Scene implements GameScene {
   }
 
   create() {
-    const audio = new MusicPlayer(this, 'main_song')
+    const audio = new MusicPlayer(this, 'mainSong')
     audio.setVolume(0.1)
-    audio.play()
+    audio.play(true)
 
     const width = this.cameras.main.width
     const height = this.cameras.main.height
@@ -50,13 +51,18 @@ class StageScene1 extends Phaser.Scene implements GameScene {
     background.setDisplaySize(width, height)
     background.setDepth(-1)
 
-    this.coinPositions = this.coin.generatePositions(this.maze.getGrid())
+    this.coinPositions = generatePossiblePositions(this.maze.getGrid())
     this.coin.create(this.coinPositions[0])
+    this.coin.setPossiblePositions(
+      generatePossiblePositions(this.maze.getGrid()),
+    )
     this.coin.playAnimation()
   }
 
   update(time: number, delta: number): void {
     this.maze.setBlockColide()
+    this.coin.setBlockColide('GET')
+    this.coin.setBlockColide('LOSE')
 
     this.player?.movePlayer()
   }

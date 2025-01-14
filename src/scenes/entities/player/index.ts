@@ -118,6 +118,13 @@ class Player {
       }
     }
   }
+
+  getCoin() {
+    console.log('GET ')
+  }
+  loseCoin() {
+    console.log('LOSE ')
+  }
 }
 
 export default Player

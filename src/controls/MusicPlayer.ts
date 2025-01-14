@@ -5,8 +5,8 @@ class MusicPlayer {
     this.music = scene.sound.add(key)
   }
 
-  play(loop: boolean = true) {
-    this.music.play({ loop: true })
+  play(loop: boolean = false) {
+    this.music.play({ loop })
   }
 
   pause() {

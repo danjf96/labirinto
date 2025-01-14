@@ -26,7 +26,7 @@ class PreloadScene extends Phaser.Scene {
     this.load.image('logo', '/cdn/images/img.png')
     this.load.image('ground', 'src/assets/game/sprites/ground.png')
     this.load.image('block', 'src/assets/game/sprites/block.png')
-    this.load.spritesheet('coin', 'src/assets/items/coin/coin.png', {
+    this.load.spritesheet('coin', 'src/assets/items/coin/sprite/coin.png', {
       frameWidth: 32,
       frameHeight: 32,
     })
@@ -37,7 +37,9 @@ class PreloadScene extends Phaser.Scene {
     })
 
     //songs
-    this.load.audio('main_song', 'src/assets/game/sfx/music.ogg')
+    this.load.audio('mainSong', 'src/assets/game/sfx/music.ogg')
+    this.load.audio('getCoin', 'src/assets/items/coin/sfx/getItem.ogg')
+    this.load.audio('loseCoin', 'src/assets/items/coin/sfx/loseItem.ogg')
   }
 
   create() {

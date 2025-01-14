@@ -14,7 +14,7 @@ class MenuScene extends Phaser.Scene {
   }
 
   create() {
-    this.playerMusic = new MusicPlayer(this, 'main_song')
+    this.playerMusic = new MusicPlayer(this, 'mainSong')
     this.playerMusic.setVolume(0.1)
     this.playerMusic.play()
 
