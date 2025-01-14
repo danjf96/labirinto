@@ -26,6 +26,10 @@ class PreloadScene extends Phaser.Scene {
     this.load.image('logo', '/cdn/images/img.png')
     this.load.image('ground', 'src/assets/game/sprites/ground.png')
     this.load.image('block', 'src/assets/game/sprites/block.png')
+    this.load.spritesheet('coin', 'src/assets/items/coin/coin.png', {
+      frameWidth: 32,
+      frameHeight: 32,
+    })
 
     this.load.spritesheet('player', 'src/assets/player/sprites/player.png', {
       frameWidth: 24,
