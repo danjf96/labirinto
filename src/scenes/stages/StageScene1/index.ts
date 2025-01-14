@@ -1,3 +1,4 @@
+import Hud from '../../../controls/Hud'
 import MusicPlayer from '../../../controls/MusicPlayer'
 import Coin from '../../entities/coin'
 import { generatePossiblePositions } from '../../entities/coin/helpers'
@@ -12,6 +13,7 @@ class StageScene1 extends Phaser.Scene implements GameScene {
   player!: Player
   coin!: Coin
   coinPositions: CoinPositionProps[] = []
+  hud!: Hud
 
   constructor() {
     super({ key: 'Stage1' })
@@ -39,6 +41,8 @@ class StageScene1 extends Phaser.Scene implements GameScene {
   }
 
   create() {
+    this.hud = new Hud(this)
+
     const audio = new MusicPlayer(this, 'mainSong')
     audio.setVolume(0.1)
     audio.play(true)

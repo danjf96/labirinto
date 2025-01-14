@@ -2,15 +2,15 @@ class GameManager {
   private coins: number = 0
   constructor() {}
 
-  addCoin() {
-    this.coins += 1
+  addCoin(value: number = 1): void {
+    this.coins += value
   }
 
-  removeCoin() {
-    this.coins -= 1
+  removeCoin(value: number = 1): void {
+    this.coins -= value
   }
 
-  resetCoins() {
+  resetCoins(): void {
     this.coins = 0
   }
 

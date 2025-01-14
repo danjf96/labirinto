@@ -1,3 +1,5 @@
+import EventManager from '../../../controls/EventManager'
+import gameManager from '../../../controls/GameManager'
 import MusicPlayer from '../../../controls/MusicPlayer'
 import GameScene from '../../interfaces/GameScene'
 import { CoinPositionProps } from './types'
@@ -55,6 +57,10 @@ class Coin {
   getCoin() {
     this.getCoinSong.play()
     this.scene.player.getCoin()
+    gameManager.addCoin()
+
+    EventManager.emit('updateCoins', gameManager.getCoins())
+
     this.newPosition()
   }
 
