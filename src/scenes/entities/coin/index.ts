@@ -37,8 +37,8 @@ class Coin {
         y: 0,
         speed: { min: -50, max: 50 },
         gravityY: 0,
-        lifespan: 400,
-        quantity: 10,
+        lifespan: 500,
+        quantity: 5,
         stopAfter: 300,
         active: false,
       },
@@ -48,7 +48,7 @@ class Coin {
   create({ x, y }: CoinPositionProps): void {
     this.sprite = this.scene.physics.add.sprite(x, y, 'coin')
     this.sprite.setOrigin(0.5)
-
+    this.position = { x, y }
     this.getCoinSong.setVolume(0.5)
     this.loseCoinSong.setVolume(0.5)
   }
