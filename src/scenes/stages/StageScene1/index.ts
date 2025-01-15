@@ -12,7 +12,6 @@ class StageScene1 extends Phaser.Scene implements GameScene {
   maze!: Maze
   player!: Player
   coin!: Coin
-  coinPositions: CoinPositionProps[] = []
   hud!: Hud
 
   constructor() {
@@ -27,10 +26,10 @@ class StageScene1 extends Phaser.Scene implements GameScene {
       [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
       [1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
       [1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
-      [1, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
       [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+      [1, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
@@ -55,11 +54,11 @@ class StageScene1 extends Phaser.Scene implements GameScene {
     background.setDisplaySize(width, height)
     background.setDepth(-1)
 
-    this.coinPositions = generatePossiblePositions(this.maze.getGrid())
-    this.coin.create(this.coinPositions[0])
-    this.coin.setPossiblePositions(
-      generatePossiblePositions(this.maze.getGrid()),
+    const coinPositions: CoinPositionProps[] = generatePossiblePositions(
+      this.maze.getGrid(),
     )
+    this.coin.create(coinPositions[0])
+    this.coin.setPossiblePositions(coinPositions)
     this.coin.playAnimation()
   }
 
