@@ -10,12 +10,39 @@ class Coin {
   private getCoinSong: MusicPlayer
   private loseCoinSong: MusicPlayer
   private possiblePositions: CoinPositionProps[] = []
+  private emitParticles!: Phaser.GameObjects.Particles.ParticleEmitter
+  private position: CoinPositionProps = { x: 0, y: 0 }
 
   constructor(scene: GameScene) {
     this.scene = scene
-    this.setAnimations()
     this.getCoinSong = new MusicPlayer(this.scene, 'getCoin')
     this.loseCoinSong = new MusicPlayer(this.scene, 'loseCoin')
+
+    this.scene.anims.create({
+      key: 'coin',
+      frames: this.scene.anims.generateFrameNumbers('coin', {
+        start: 0,
+        end: 9,
+      }),
+      frameRate: 10,
+      repeat: -1, // Repetição infinita
+    })
+
+    this.emitParticles = this.scene.add.particles(
+      undefined,
+      undefined,
+      'coinParticles',
+      {
+        x: 0,
+        y: 0,
+        speed: { min: -50, max: 50 },
+        gravityY: 0,
+        lifespan: 400,
+        quantity: 10,
+        stopAfter: 300,
+        active: false,
+      },
+    )
   }
 
   create({ x, y }: CoinPositionProps): void {
@@ -27,6 +54,7 @@ class Coin {
   }
 
   setPosition({ x, y }: CoinPositionProps): void {
+    this.position = { x, y }
     this.sprite.setPosition(x, y)
   }
 
@@ -38,20 +66,14 @@ class Coin {
     return this.possiblePositions
   }
 
-  setAnimations(): void {
-    this.scene.anims.create({
-      key: 'coin',
-      frames: this.scene.anims.generateFrameNumbers('coin', {
-        start: 0,
-        end: 9,
-      }),
-      frameRate: 10,
-      repeat: -1, // Repetição infinita
-    })
-  }
-
   playAnimation(animation: string = 'coin'): void {
     this.sprite.play(animation)
+  }
+
+  playParticles({ x, y }: CoinPositionProps) {
+    if (!this.emitParticles.active) this.emitParticles.setActive(true)
+    this.emitParticles.setPosition(x, y)
+    this.emitParticles.start(0, 500)
   }
 
   getCoin() {
@@ -61,6 +83,7 @@ class Coin {
 
     EventManager.emit('updateCoins', gameManager.getCoins())
 
+    this.playParticles(this.position)
     this.newPosition()
   }
 
