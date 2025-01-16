@@ -3,6 +3,7 @@ import MusicPlayer from '../../../controls/MusicPlayer'
 import Coin from '../../entities/coin'
 import { generatePossiblePositions } from '../../entities/coin/helpers'
 import { CoinPositionProps } from '../../entities/coin/types'
+import Enemy from '../../entities/enemy'
 import Maze from '../../entities/maze'
 import { MazeGridType } from '../../entities/maze/types'
 import Player from '../../entities/player'
@@ -13,6 +14,7 @@ class StageScene1 extends Phaser.Scene implements GameScene {
   player!: Player
   coin!: Coin
   hud!: Hud
+  enemyGoblin!: Enemy
 
   constructor() {
     super({ key: 'Stage1' })
@@ -20,6 +22,7 @@ class StageScene1 extends Phaser.Scene implements GameScene {
 
   preload() {
     this.player = new Player(this, { x: 0, y: 0 })
+
     const mazeGrid: MazeGridType = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -32,6 +35,9 @@ class StageScene1 extends Phaser.Scene implements GameScene {
       [1, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
+
+    const possiblePositions = generatePossiblePositions(mazeGrid)
+    this.enemyGoblin = new Enemy(this, possiblePositions[1])
 
     this.maze = new Maze(this, mazeGrid)
     this.maze.create()
@@ -63,11 +69,16 @@ class StageScene1 extends Phaser.Scene implements GameScene {
   }
 
   update(time: number, delta: number): void {
-    this.maze.setBlockColide()
+    this.maze.setCollisionsWithTheBlocks([
+      this.player.getSprite(),
+      this.enemyGoblin.getSprite(),
+    ])
+
     this.coin.setBlockColide('GET')
     this.coin.setBlockColide('LOSE')
 
-    this.player?.movePlayer()
+    this.player.movePlayer()
+    this.enemyGoblin.movePlayer()
   }
 }
 

@@ -37,6 +37,15 @@ class PreloadScene extends Phaser.Scene {
       frameHeight: 32,
     })
 
+    this.load.spritesheet(
+      'enemyGoblin',
+      'src/assets/enemies/goblin/goblin.png',
+      {
+        frameWidth: 24,
+        frameHeight: 40,
+      },
+    )
+
     //songs
     this.load.audio('mainSong', 'src/assets/game/sfx/music.ogg')
     this.load.audio('getCoin', 'src/assets/items/coin/sfx/getItem.ogg')

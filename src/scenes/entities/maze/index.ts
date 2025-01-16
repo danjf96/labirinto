@@ -37,8 +37,8 @@ class Maze {
     }
   }
 
-  setBlockColide() {
-    this.scene.physics.collide(this.scene.player.getSprite(), this.blocks)
+  setCollisionsWithTheBlocks(sprites: Phaser.GameObjects.Sprite[]) {
+    this.scene.physics.add.collider(sprites, this.blocks)
   }
 
   getGrid(): MazeGridType {
