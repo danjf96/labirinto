@@ -87,7 +87,14 @@ class Coin {
     this.newPosition()
   }
 
-  setBlockColide(type: 'GET' | 'LOSE') {
+  loseCoin() {
+    this.loseCoinSong.play()
+    gameManager.removeCoin()
+
+    EventManager.emit('updateCoins', gameManager.getCoins())
+  }
+
+  setColider(type: 'GET' | 'LOSE') {
     const playerEntity = this.scene.player
     switch (type) {
       case 'GET':

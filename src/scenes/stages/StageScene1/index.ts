@@ -74,10 +74,11 @@ class StageScene1 extends Phaser.Scene implements GameScene {
       this.enemyGoblin.getSprite(),
     ])
 
-    this.coin.setBlockColide('GET')
-    this.coin.setBlockColide('LOSE')
+    this.coin.setColider('GET')
 
     this.player.movePlayer()
+    this.player.loseCoinWhenColide([this.enemyGoblin.getSprite()])
+
     this.enemyGoblin.movePlayer()
   }
 }

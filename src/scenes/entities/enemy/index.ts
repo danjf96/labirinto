@@ -85,10 +85,6 @@ class Enemy {
     this.sprite.setPosition(x, y)
   }
 
-  setVelocity(newVelocity: number) {
-    this.velocity = newVelocity
-  }
-
   movePlayer() {
     if (
       Math.floor(this.sprite.x) % 50 === 0 &&

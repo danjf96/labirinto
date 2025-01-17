@@ -1,14 +1,15 @@
+import GameScene from '../../interfaces/GameScene'
 import { PlayAnimKey, PlayerPosition } from './types'
 
 class Player {
-  private scene: Phaser.Scene
+  private scene: GameScene
   private position: PlayerPosition
   private sprite: Phaser.GameObjects.Sprite
   private controls!: Phaser.Types.Input.Keyboard.CursorKeys
 
   private velocity: number = 100
 
-  constructor(scene: Phaser.Scene, newPosition: PlayerPosition) {
+  constructor(scene: GameScene, newPosition: PlayerPosition) {
     this.scene = scene
     this.position = newPosition
 
@@ -122,8 +123,11 @@ class Player {
   getCoin() {
     console.log('GET ')
   }
-  loseCoin() {
-    console.log('LOSE ')
+
+  loseCoinWhenColide(gameObjects: Phaser.GameObjects.Sprite[]) {
+    this.scene.physics.collide(gameObjects, this.sprite, () => {
+      this.scene.coin.loseCoin()
+    })
   }
 }
 
