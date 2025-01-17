@@ -38,8 +38,7 @@ class Coin {
         speed: { min: -50, max: 50 },
         gravityY: 0,
         lifespan: 500,
-        quantity: 5,
-        stopAfter: 300,
+        quantity: 15,
         active: false,
       },
     )
@@ -73,7 +72,7 @@ class Coin {
   playParticles({ x, y }: CoinPositionProps) {
     if (!this.emitParticles.active) this.emitParticles.setActive(true)
     this.emitParticles.setPosition(x, y)
-    this.emitParticles.start(0, 500)
+    this.emitParticles.explode(15)
   }
 
   getCoin() {
