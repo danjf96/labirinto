@@ -1,3 +1,4 @@
+import gameManager from '../../../controls/GameManager'
 import Hud from '../../../controls/Hud'
 import MusicPlayer from '../../../controls/MusicPlayer'
 import Coin from '../../entities/coin'
@@ -69,6 +70,9 @@ class StageScene1 extends Phaser.Scene implements GameScene {
   }
 
   update(time: number, delta: number): void {
+    const gameOver = gameManager.getGameOver()
+    if (gameOver) return
+
     this.maze.setCollisionsWithTheBlocks([
       this.player.getSprite(),
       this.enemyGoblin.getSprite(),

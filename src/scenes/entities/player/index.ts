@@ -1,3 +1,4 @@
+import gameManager from '../../../controls/GameManager'
 import GameScene from '../../interfaces/GameScene'
 import { PlayAnimKey, PlayerPosition } from './types'
 
@@ -125,9 +126,19 @@ class Player {
   }
 
   loseCoinWhenColide(gameObjects: Phaser.GameObjects.Sprite[]) {
-    this.scene.physics.collide(gameObjects, this.sprite, () => {
-      this.scene.coin.loseCoin()
-    })
+    this.scene.physics.overlap(
+      gameObjects,
+      this.sprite,
+      () => {
+        this.scene.coin.loseCoin()
+        const coins = gameManager.getCoins()
+        if (coins == 0) {
+          gameManager.setGameOver(true)
+        }
+      },
+      () => null,
+      this.scene,
+    )
   }
 }
 

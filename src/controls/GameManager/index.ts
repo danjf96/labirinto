@@ -1,5 +1,6 @@
 class GameManager {
   private coins: number = 0
+  private gameOver: Boolean = false
   constructor() {}
 
   addCoin(value: number = 1): void {
@@ -16,6 +17,14 @@ class GameManager {
 
   getCoins(): number {
     return this.coins
+  }
+
+  setGameOver(gameOver: Boolean) {
+    this.gameOver = gameOver
+  }
+
+  getGameOver(): Boolean {
+    return this.gameOver
   }
 }
 
