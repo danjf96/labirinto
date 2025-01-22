@@ -126,15 +126,27 @@ class Player {
   }
 
   loseCoinWhenColide(gameObjects: Phaser.GameObjects.Sprite[]) {
+    if (!this.sprite.active) return
+
     this.scene.physics.overlap(
       gameObjects,
       this.sprite,
       () => {
         this.scene.coin.loseCoin()
+        this.sprite.setActive(false)
+
         const coins = gameManager.getCoins()
-        if (coins == 0) {
+
+        if (coins < 0) {
           gameManager.setGameOver(true)
+          return
         }
+
+        this.sprite.setAlpha(0.5)
+        this.scene.time.delayedCall(800, () => {
+          this.sprite.setActive(true)
+          this.sprite.setAlpha(1)
+        })
       },
       () => null,
       this.scene,
