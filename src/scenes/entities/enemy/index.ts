@@ -15,11 +15,10 @@ class Enemy {
 
     if (spriteDirectionParam) this.spriteDirection = spriteDirectionParam
 
-    this.sprite = scene.physics.add.sprite(
-      newPosition.x,
-      newPosition.y,
-      'enemyGoblin',
-    )
+    this.sprite = scene.physics.add
+      .sprite(newPosition.x, newPosition.y, 'enemyGoblin')
+      .setCollideWorldBounds(true)
+      .setSize(23, 35)
 
     this.sprite.setOrigin(0.5)
 

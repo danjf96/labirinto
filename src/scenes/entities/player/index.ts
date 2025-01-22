@@ -16,7 +16,8 @@ class Player {
 
     this.sprite = scene.physics.add
       .sprite(newPosition.x, newPosition.y, 'player')
-      .setSize(20, 30)
+      .setCollideWorldBounds(true)
+      .setSize(18, 30)
 
     this.sprite.setOrigin(0.5)
 

@@ -45,7 +45,8 @@ class Coin {
   }
 
   create({ x, y }: CoinPositionProps): void {
-    this.sprite = this.scene.physics.add.sprite(x, y, 'coin')
+    this.sprite = this.scene.physics.add.sprite(x, y, 'coin').setSize(12, 14)
+
     this.sprite.setOrigin(0.5)
     this.position = { x, y }
     this.getCoinSong.setVolume(0.5)
