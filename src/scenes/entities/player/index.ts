@@ -14,11 +14,10 @@ class Player {
     this.scene = scene
     this.position = newPosition
 
-    this.sprite = scene.physics.add.sprite(
-      newPosition.x,
-      newPosition.y,
-      'player',
-    )
+    this.sprite = scene.physics.add
+      .sprite(newPosition.x, newPosition.y, 'player')
+      .setSize(20, 30)
+
     this.sprite.setOrigin(0.5)
 
     this.controls = this.scene.input.keyboard?.createCursorKeys()!
@@ -126,12 +125,12 @@ class Player {
   }
 
   loseCoinWhenColide(gameObjects: Phaser.GameObjects.Sprite[]) {
-    if (!this.sprite.active) return
-
-    this.scene.physics.overlap(
+    this.scene.physics.add.overlap(
       gameObjects,
       this.sprite,
       () => {
+        if (!this.sprite.active) return
+
         this.scene.coin.loseCoin()
         this.sprite.setActive(false)
 
@@ -143,7 +142,7 @@ class Player {
         }
 
         this.sprite.setAlpha(0.5)
-        this.scene.time.delayedCall(800, () => {
+        this.scene.time.delayedCall(1200, () => {
           this.sprite.setActive(true)
           this.sprite.setAlpha(1)
         })

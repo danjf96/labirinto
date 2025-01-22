@@ -28,12 +28,12 @@ class StageScene1 extends Phaser.Scene implements GameScene {
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
-      [1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
+      [1, 2, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
       [1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
       [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
-      [1, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
@@ -56,7 +56,6 @@ class StageScene1 extends Phaser.Scene implements GameScene {
     const width = this.cameras.main.width
     const height = this.cameras.main.height
     const background = this.add.sprite(0, 0, 'ground')
-
     background.setOrigin(0, 0)
     background.setDisplaySize(width, height)
     background.setDepth(-1)
@@ -67,21 +66,21 @@ class StageScene1 extends Phaser.Scene implements GameScene {
     this.coin.create(coinPositions[0])
     this.coin.setPossiblePositions(coinPositions)
     this.coin.playAnimation()
-  }
-
-  update(time: number, delta: number): void {
-    const gameOver = gameManager.getGameOver()
-    if (gameOver) return
 
     this.maze.setCollisionsWithTheBlocks([
       this.player.getSprite(),
       this.enemyGoblin.getSprite(),
     ])
 
+    this.player.loseCoinWhenColide([this.enemyGoblin.getSprite()])
     this.coin.setColider('GET')
+  }
+
+  update(time: number, delta: number): void {
+    const gameOver = gameManager.getGameOver()
+    if (gameOver) return
 
     this.player.movePlayer()
-    this.player.loseCoinWhenColide([this.enemyGoblin.getSprite()])
 
     this.enemyGoblin.movePlayer()
   }

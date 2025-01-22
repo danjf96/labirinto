@@ -97,7 +97,7 @@ class Coin {
     const playerEntity = this.scene.player
     switch (type) {
       case 'GET':
-        this.scene.physics.overlap(
+        this.scene.physics.add.overlap(
           playerEntity.getSprite(),
           this.sprite,
           this.getCoin,
