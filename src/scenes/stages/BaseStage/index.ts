@@ -15,7 +15,6 @@ class BaseStage extends Phaser.Scene implements GameScene {
   player!: Player
   coin!: Coin
   hud!: Hud
-  enemyGoblin!: Enemy
   audio!: MusicPlayer
 
   constructor({ key }: { key: string }) {
@@ -53,6 +52,8 @@ class BaseStage extends Phaser.Scene implements GameScene {
     this.coin.playAnimation()
 
     this.coin.setColider('GET')
+
+    this.events.once('shutdown', this.shutdown)
   }
 
   update(time: number, delta: number): void {
@@ -60,6 +61,10 @@ class BaseStage extends Phaser.Scene implements GameScene {
     if (gameOver) return
 
     this.player.movePlayer()
+  }
+
+  async shutdown({ scene: { hud, tweens, anims } }: { scene: GameScene }) {
+    hud.destroy()
   }
 }
 

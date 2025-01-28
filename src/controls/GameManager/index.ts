@@ -1,3 +1,5 @@
+import GameScene from '../../scenes/stages/BaseStage/interfaces'
+
 class GameManager {
   private coins: number = 0
   private gameOver: Boolean = false
@@ -19,8 +21,15 @@ class GameManager {
     return this.coins
   }
 
-  setGameOver(gameOver: Boolean) {
+  setGameOver(gameOver: Boolean, scene: GameScene) {
     this.gameOver = gameOver
+    scene.scene.stop()
+    scene.scene.start('GameOver')
+  }
+
+  restartGame() {
+    this.gameOver = false
+    this.coins = 0
   }
 
   getGameOver(): Boolean {

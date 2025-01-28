@@ -27,45 +27,49 @@ class Player {
   }
 
   setAnimations() {
-    this.scene.anims.create({
-      key: 'goDown',
-      frames: this.scene.anims.generateFrameNumbers('player', {
-        start: 0,
-        end: 7,
-      }),
-      frameRate: 12,
-      repeat: -1, // Repetição infinita
-    })
+    if (!this.scene.anims.exists('goDown'))
+      this.scene.anims.create({
+        key: 'goDown',
+        frames: this.scene.anims.generateFrameNumbers('player', {
+          start: 0,
+          end: 7,
+        }),
+        frameRate: 12,
+        repeat: -1, // Repetição infinita
+      })
 
-    this.scene.anims.create({
-      key: 'goUp',
-      frames: this.scene.anims.generateFrameNumbers('player', {
-        start: 8,
-        end: 15,
-      }),
-      frameRate: 12,
-      repeat: -1,
-    })
+    if (!this.scene.anims.exists('goUp'))
+      this.scene.anims.create({
+        key: 'goUp',
+        frames: this.scene.anims.generateFrameNumbers('player', {
+          start: 8,
+          end: 15,
+        }),
+        frameRate: 12,
+        repeat: -1,
+      })
 
-    this.scene.anims.create({
-      key: 'goLeft',
-      frames: this.scene.anims.generateFrameNumbers('player', {
-        start: 16,
-        end: 23,
-      }),
-      frameRate: 12,
-      repeat: -1,
-    })
+    if (!this.scene.anims.exists('goLeft'))
+      this.scene.anims.create({
+        key: 'goLeft',
+        frames: this.scene.anims.generateFrameNumbers('player', {
+          start: 16,
+          end: 23,
+        }),
+        frameRate: 12,
+        repeat: -1,
+      })
 
-    this.scene.anims.create({
-      key: 'goRight',
-      frames: this.scene.anims.generateFrameNumbers('player', {
-        start: 24,
-        end: 31,
-      }),
-      frameRate: 12,
-      repeat: -1,
-    })
+    if (!this.scene.anims.exists('goRight'))
+      this.scene.anims.create({
+        key: 'goRight',
+        frames: this.scene.anims.generateFrameNumbers('player', {
+          start: 24,
+          end: 31,
+        }),
+        frameRate: 12,
+        repeat: -1,
+      })
   }
 
   public getSprite(): Phaser.GameObjects.Sprite {
@@ -138,7 +142,7 @@ class Player {
         const coins = gameManager.getCoins()
 
         if (coins < 0) {
-          gameManager.setGameOver(true)
+          gameManager.setGameOver(true, this.scene)
           return
         }
 

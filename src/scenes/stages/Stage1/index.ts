@@ -4,6 +4,8 @@ import { MazeGridType } from '../../entities/maze/interfaces'
 import BaseStage from '../BaseStage'
 
 class Stage1 extends BaseStage {
+  enemyGoblin!: Enemy
+
   constructor() {
     super({ key: 'Stage1' })
   }

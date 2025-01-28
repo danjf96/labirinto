@@ -1,7 +1,7 @@
 import EventManager from '../../../controls/EventManager'
 import gameManager from '../../../controls/GameManager'
 import MusicPlayer from '../../../controls/MusicPlayer'
-import GameScene from '../../interfaces/GameScene'
+import GameScene from '../../stages/BaseStage/interfaces'
 import { CoinPositionProps } from './interfaces'
 
 class Coin {
@@ -18,15 +18,16 @@ class Coin {
     this.getCoinSong = new MusicPlayer(this.scene, 'getCoin')
     this.loseCoinSong = new MusicPlayer(this.scene, 'loseCoin')
 
-    this.scene.anims.create({
-      key: 'coin',
-      frames: this.scene.anims.generateFrameNumbers('coin', {
-        start: 0,
-        end: 9,
-      }),
-      frameRate: 10,
-      repeat: -1, // Repetição infinita
-    })
+    if (!this.scene.anims.exists('coin'))
+      this.scene.anims.create({
+        key: 'coin',
+        frames: this.scene.anims.generateFrameNumbers('coin', {
+          start: 0,
+          end: 9,
+        }),
+        frameRate: 10,
+        repeat: -1, // Repetição infinita
+      })
 
     this.emitParticles = this.scene.add.particles(
       undefined,

@@ -1,4 +1,4 @@
-import GameScene from '../../scenes/interfaces/GameScene'
+import GameScene from '../../scenes/stages/BaseStage/interfaces'
 import EventManager from '../EventManager'
 import gameManager from '../GameManager'
 

@@ -1,3 +1,4 @@
+import gameManager from '../../controls/GameManager'
 import MusicPlayer from '../../controls/MusicPlayer'
 
 class MenuScene extends Phaser.Scene {
@@ -10,6 +11,7 @@ class MenuScene extends Phaser.Scene {
 
   initStage() {
     this.playerMusic.stop()
+    gameManager.restartGame()
     this.scene.start('Stage1')
   }
 
@@ -22,7 +24,7 @@ class MenuScene extends Phaser.Scene {
       this.cameras.main.centerX,
       150,
       'LABIRINTO',
-      { font: '40px emulogic', color: '#fff' },
+      { font: '20px emulogic', color: '#fff' },
     )
     txtLabirinto.setOrigin(0.5, 0.5)
 
