@@ -1,4 +1,4 @@
-import MusicPlayer from '../controls/MusicPlayer'
+import MusicPlayer from '../../controls/MusicPlayer'
 
 class MenuScene extends Phaser.Scene {
   private playerMusic!: MusicPlayer

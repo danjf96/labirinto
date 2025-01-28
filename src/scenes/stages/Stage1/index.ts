@@ -3,7 +3,7 @@ import Enemy from '../../entities/enemy'
 import { MazeGridType } from '../../entities/maze/interfaces'
 import BaseStage from '../BaseStage'
 
-class StageScene1 extends BaseStage {
+class Stage1 extends BaseStage {
   constructor() {
     super({ key: 'Stage1' })
   }
@@ -46,4 +46,4 @@ class StageScene1 extends BaseStage {
   }
 }
 
-export default StageScene1
+export default Stage1

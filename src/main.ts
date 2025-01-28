@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
-import BootScene from './scenes/BootScene'
-import PreloadScene from './scenes/PreloadScene'
-import MenuScene from './scenes/MenuScene'
+import BootScene from './scenes/managers/BootScene'
+import PreloadScene from './scenes/managers/PreloadScene'
+import MenuScene from './scenes/managers/MenuScene'
 import allStages from './scenes/stages'
 
 const config: Phaser.Types.Core.GameConfig = {
