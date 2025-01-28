@@ -1,5 +1,5 @@
 import GameScene from '../../interfaces/GameScene'
-import { MazeGridType } from './types'
+import { MazeGridType } from './interfaces'
 
 class Maze {
   private scene: GameScene

@@ -1,5 +1,5 @@
-import { MazeGridType } from '../maze/types'
-import { CoinPositionProps } from './types'
+import { MazeGridType } from '../maze/interfaces'
+import { CoinPositionProps } from './interfaces'
 
 export function generatePossiblePositions(
   mazeGrid: MazeGridType,

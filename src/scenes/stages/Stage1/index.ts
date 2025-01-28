@@ -1,6 +1,6 @@
 import { generatePossiblePositions } from '../../entities/coin/helpers'
 import Enemy from '../../entities/enemy'
-import { MazeGridType } from '../../entities/maze/types'
+import { MazeGridType } from '../../entities/maze/interfaces'
 import BaseStage from '../BaseStage'
 
 class StageScene1 extends BaseStage {

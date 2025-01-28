@@ -3,12 +3,12 @@ import Hud from '../../../controls/Hud'
 import MusicPlayer from '../../../controls/MusicPlayer'
 import Coin from '../../entities/coin'
 import { generatePossiblePositions } from '../../entities/coin/helpers'
-import { CoinPositionProps } from '../../entities/coin/types'
+import { CoinPositionProps } from '../../entities/coin/interfaces'
 import Enemy from '../../entities/enemy'
 import Maze from '../../entities/maze'
-import { MazeGridType } from '../../entities/maze/types'
+import { MazeGridType } from '../../entities/maze/interfaces'
 import Player from '../../entities/player'
-import GameScene from '../../interfaces/GameScene'
+import GameScene from './interfaces'
 
 class BaseStage extends Phaser.Scene implements GameScene {
   maze!: Maze

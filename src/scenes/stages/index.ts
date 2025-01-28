@@ -1,4 +1,4 @@
-import StageScene1 from './StageScene1'
+import StageScene1 from './Stage1'
 
 type SceneType = typeof Phaser.Scene
 

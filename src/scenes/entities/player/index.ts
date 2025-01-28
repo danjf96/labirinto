@@ -1,6 +1,6 @@
 import gameManager from '../../../controls/GameManager'
-import GameScene from '../../interfaces/GameScene'
-import { PlayAnimKey, PlayerPosition } from './types'
+import GameScene from '../../stages/BaseStage/interfaces'
+import { PlayAnimKey, PlayerPosition } from './interfaces'
 
 class Player {
   private scene: GameScene

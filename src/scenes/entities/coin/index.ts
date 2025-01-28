@@ -2,7 +2,7 @@ import EventManager from '../../../controls/EventManager'
 import gameManager from '../../../controls/GameManager'
 import MusicPlayer from '../../../controls/MusicPlayer'
 import GameScene from '../../interfaces/GameScene'
-import { CoinPositionProps } from './types'
+import { CoinPositionProps } from './interfaces'
 
 class Coin {
   scene!: GameScene

@@ -1,5 +1,9 @@
-import GameScene from '../../interfaces/GameScene'
-import { EnemyPositionParams, PlayAnimKey, SpriteDirectionProps } from './types'
+import GameScene from '../../stages/BaseStage/interfaces'
+import {
+  EnemyPositionParams,
+  PlayAnimKey,
+  SpriteDirectionProps,
+} from './interfaces'
 
 class Enemy {
   private scene: GameScene
