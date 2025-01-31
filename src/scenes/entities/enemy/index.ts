@@ -1,4 +1,5 @@
 import GameScene from '../../stages/BaseStage/interfaces'
+import { BLOCK_SIZE } from '../maze/constants'
 import {
   EnemyPositionParams,
   PlayAnimKey,
@@ -8,7 +9,7 @@ import {
 class Enemy {
   private scene: GameScene
   private sprite: Phaser.GameObjects.Sprite
-  private spriteDirection: SpriteDirectionProps = 'DOWN'
+  private spriteDirection: SpriteDirectionProps = 'LEFT'
 
   constructor(
     scene: GameScene,
@@ -89,14 +90,15 @@ class Enemy {
   }
 
   movePlayer() {
+    const centerInBlock = BLOCK_SIZE / 2
     if (
-      Math.floor(this.sprite.x) % 50 === 0 &&
-      Math.floor(this.sprite.y) % 50 === 0
+      Math.floor(this.sprite.x - centerInBlock) % BLOCK_SIZE === 0 &&
+      Math.floor(this.sprite.y - centerInBlock) % BLOCK_SIZE === 0
     ) {
       const maze = this.scene.maze.getGrid()
 
-      var enemyCol = Math.floor(this.sprite.x / 50)
-      var enemyRow = Math.floor(this.sprite.y / 50)
+      var enemyCol = Math.floor(this.sprite.x / BLOCK_SIZE)
+      var enemyRow = Math.floor(this.sprite.y / BLOCK_SIZE)
       var validPath: SpriteDirectionProps[] = []
 
       if (

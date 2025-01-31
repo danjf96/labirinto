@@ -5,3 +5,8 @@
 export type MazeValueType = 0 | 1 | 2 | 3
 
 export type MazeGridType = MazeValueType[][]
+
+export interface MazePositionsProps {
+  x: number
+  y: number
+}

@@ -10,18 +10,18 @@ class GameOver extends Phaser.Scene {
   }
 
   create() {
-    this.add.sprite(0, 0, 'end')
+    this.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'end')
 
     const textStart = this.add.text(
       this.cameras.main.centerX,
-      150,
+      this.cameras.main.centerY,
       'PRESS START',
       { font: '40px emulogic', color: '#F00' },
     )
     textStart.setOrigin(0.5, 0.5)
     textStart.setAlpha(0)
 
-    this.time.delayedCall(3000, () => {
+    this.time.delayedCall(1500, () => {
       this.tweens.add({
         targets: textStart,
         alpha: { from: 1, to: 0 },

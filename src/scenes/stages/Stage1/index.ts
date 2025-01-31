@@ -1,4 +1,4 @@
-import { generatePossiblePositions } from '../../entities/coin/helpers'
+import { generatePossiblePositions } from '../../entities/maze/helpers'
 import Enemy from '../../entities/enemy'
 import { MazeGridType } from '../../entities/maze/interfaces'
 import BaseStage from '../BaseStage'

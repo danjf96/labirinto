@@ -11,8 +11,8 @@ class Hud {
 
     this.textCoins = this.scene.add
       .text(
-        65,
-        12,
+        15,
+        15,
         'COINS: ' + gameManager.getCoins().toString().padStart(3, '0'),
         {
           font: '15px emulogic',
@@ -20,8 +20,6 @@ class Hud {
         },
       )
       .setDepth(10)
-
-    this.textCoins.setOrigin(0.5, 0)
 
     EventManager.on('updateCoins', this.updateCoins, this)
   }
