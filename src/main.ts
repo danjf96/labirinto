@@ -17,7 +17,7 @@ const config: Phaser.Types.Core.GameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true, // Ative debug para visualizar os limites
+      debug: false,
     },
   },
 }
