@@ -1,4 +1,5 @@
 import GameScene from '../../scenes/stages/BaseStage/interfaces'
+import Storage from '../Storage'
 
 class GameManager {
   private coins: number = 0
@@ -6,7 +7,11 @@ class GameManager {
   private highScore: number = 0
   private score: number = 0
 
-  constructor() {}
+  constructor() {
+    const highScore = Storage.getItem('highScore')
+    if (highScore) this.highScore = highScore
+    else Storage.setItem('highScore', 0)
+  }
 
   addCoin(value: number = 1): void {
     this.coins += value
@@ -41,9 +46,10 @@ class GameManager {
 
   addHighScore(highScore: number): void {
     this.highScore = highScore
+    Storage.setItem('highScore', highScore)
   }
 
-  getHighScore(highScore: number): number {
+  getHighScore(): number {
     return this.highScore
   }
 

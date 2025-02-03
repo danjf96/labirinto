@@ -15,11 +15,7 @@ class MenuScene extends Phaser.Scene {
     this.scene.start('Stage1')
   }
 
-  create() {
-    this.playerMusic = new MusicPlayer(this, 'mainSong')
-    this.playerMusic.setVolume(0.1)
-    this.playerMusic.play()
-
+  addMazeText() {
     const txtLabirinto = this.add.text(
       this.cameras.main.centerX,
       150,
@@ -36,7 +32,9 @@ class MenuScene extends Phaser.Scene {
       yoyo: false,
       loop: 0,
     })
+  }
 
+  addStartText() {
     const txtPressStart = this.add.text(
       this.cameras.main.centerX,
       550,
@@ -61,6 +59,38 @@ class MenuScene extends Phaser.Scene {
     this.enterKey = this.input.keyboard?.addKey(
       Phaser.Input.Keyboard.KeyCodes.ENTER,
     )
+  }
+
+  addTextHighScore() {
+    const txtHighScore = this.add
+      .text(
+        this.cameras.main.centerX,
+        this.cameras.main.height - 100,
+        `HIGH SCORE: ${gameManager.getHighScore()}`,
+        { font: '40px emulogic', color: '#fff' },
+      )
+      .setOrigin(0.5)
+      .setAlpha(0)
+
+    this.time.delayedCall(1000, () => {
+      this.tweens.add({
+        targets: txtHighScore,
+        alpha: { from: 1, to: 0 },
+        duration: 500,
+        repeat: -1,
+        yoyo: true,
+      })
+    })
+  }
+
+  create() {
+    this.playerMusic = new MusicPlayer(this, 'mainSong')
+    this.playerMusic.setVolume(0.1)
+    this.playerMusic.play()
+
+    this.addMazeText()
+    this.addStartText()
+    this.addTextHighScore()
   }
 
   update(time: number, delta: number): void {
