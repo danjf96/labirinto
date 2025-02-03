@@ -33,6 +33,9 @@ class GameManager {
     this.gameOver = gameOver
     scene.scene.stop()
     scene.scene.start('GameOver')
+    this.score = 0
+    const highScore = Storage.getItem('highScore')
+    if (highScore) this.highScore = highScore
   }
 
   restartGame() {

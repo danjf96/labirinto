@@ -75,7 +75,7 @@ class BaseStage extends Phaser.Scene implements GameScene {
     this.hud.updateTimer(--this.phaseDurationTime)
     if (this.phaseDurationTime <= 0) {
       this.timerEvent.remove(false)
-      alert('ACABOU O TEMPO')
+      gameManager.setGameOver(true, this)
     }
   }
 
