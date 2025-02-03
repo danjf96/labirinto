@@ -12,6 +12,7 @@ class Coin {
   private possiblePositions: CoinPositionProps[] = []
   private emitParticles!: Phaser.GameObjects.Particles.ParticleEmitter
   private position: CoinPositionProps = { x: 0, y: 0 }
+  private bonus: number = 5
 
   constructor(scene: GameScene) {
     this.scene = scene
@@ -82,7 +83,12 @@ class Coin {
     this.scene.player.getCoin()
     gameManager.addCoin()
 
-    EventManager.emit('updateCoins', gameManager.getCoins())
+    gameManager.addScore(gameManager.getScore() + this.bonus)
+
+    EventManager.emit('updateScore', {
+      coins: gameManager.getCoins(),
+      score: gameManager.getScore(),
+    })
 
     this.playParticles(this.position)
     this.newPosition()
@@ -91,8 +97,12 @@ class Coin {
   loseCoin() {
     this.loseCoinSong.play()
     gameManager.removeCoin()
+    gameManager.addScore(gameManager.getScore() - this.bonus)
 
-    EventManager.emit('updateCoins', gameManager.getCoins())
+    EventManager.emit('updateScore', {
+      coins: gameManager.getCoins(),
+      score: gameManager.getScore(),
+    })
   }
 
   setColider(type: 'GET' | 'LOSE') {
