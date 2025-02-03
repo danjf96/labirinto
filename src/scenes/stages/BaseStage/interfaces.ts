@@ -10,4 +10,8 @@ interface GameScene extends Phaser.Scene {
   hud: Hud
 }
 
+export interface BaseStageCreateParams {
+  phaseDurationTime?: number
+}
+
 export default GameScene

@@ -7,7 +7,7 @@ import { CoinPositionProps } from '../../entities/coin/interfaces'
 import Maze from '../../entities/maze'
 import { MazeGridType } from '../../entities/maze/interfaces'
 import Player from '../../entities/player'
-import GameScene from './interfaces'
+import GameScene, { BaseStageCreateParams } from './interfaces'
 
 class BaseStage extends Phaser.Scene implements GameScene {
   maze!: Maze
@@ -15,6 +15,8 @@ class BaseStage extends Phaser.Scene implements GameScene {
   coin!: Coin
   hud!: Hud
   audio!: MusicPlayer
+  phaseDurationTime: number = 0
+  timerEvent: any
 
   constructor({ key }: { key: string }) {
     super({ key })
@@ -29,8 +31,10 @@ class BaseStage extends Phaser.Scene implements GameScene {
     this.coin = new Coin(this)
   }
 
-  create() {
+  create({ phaseDurationTime = 5 }: BaseStageCreateParams) {
+    this.phaseDurationTime = phaseDurationTime
     this.hud = new Hud(this)
+    this.hud.updateTimer(phaseDurationTime)
 
     this.audio = new MusicPlayer(this, 'mainSong')
     this.audio.setVolume(0.1)
@@ -53,6 +57,26 @@ class BaseStage extends Phaser.Scene implements GameScene {
     this.coin.setColider('GET')
 
     this.events.once('shutdown', this.shutdown)
+
+    //timer
+    this.timerEvent = this.time.addEvent({
+      delay: 1000, // 1 segundo
+      callback: this.updateTimer,
+      callbackScope: this,
+      loop: true,
+    })
+  }
+
+  async shutdown({ scene: { hud, tweens, anims } }: { scene: GameScene }) {
+    hud.destroy()
+  }
+
+  updateTimer() {
+    this.hud.updateTimer(--this.phaseDurationTime)
+    if (this.phaseDurationTime <= 0) {
+      this.timerEvent.remove(false)
+      alert('ACABOU O TEMPO')
+    }
   }
 
   update(time: number, delta: number): void {
@@ -60,10 +84,6 @@ class BaseStage extends Phaser.Scene implements GameScene {
     if (gameOver) return
 
     this.player.movePlayer()
-  }
-
-  async shutdown({ scene: { hud, tweens, anims } }: { scene: GameScene }) {
-    hud.destroy()
   }
 }
 

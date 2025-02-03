@@ -31,7 +31,7 @@ class Stage1 extends BaseStage {
   }
 
   create() {
-    super.create()
+    super.create({})
 
     this.maze.setCollisionsWithTheBlocks([
       this.player.getSprite(),
