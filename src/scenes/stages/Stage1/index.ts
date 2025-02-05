@@ -47,7 +47,7 @@ class Stage1 extends BaseStage {
 
     this.enemyGoblin.movePlayer()
 
-    if (gameManager.getCoins() == 1 && !gameManager.getGameOver()) {
+    if (gameManager.getCoins() == this.maxCoins && !gameManager.getGameOver()) {
       this.completePhase('Stage2')
     }
   }

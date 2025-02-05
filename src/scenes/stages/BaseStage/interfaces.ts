@@ -13,6 +13,7 @@ interface GameScene extends Phaser.Scene {
 }
 
 export interface BaseStageCreateParams {
+  maxCoins?: number
   phaseDurationTime?: number
 }
 

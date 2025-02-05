@@ -2,6 +2,7 @@ import { generatePossiblePositions } from '../../entities/maze/helpers'
 import Enemy from '../../entities/enemy'
 import { MazeGridType } from '../../entities/maze/interfaces'
 import BaseStage from '../BaseStage'
+import gameManager from '../../../controls/GameManager'
 
 class Stage2 extends BaseStage {
   enemyGoblin!: Enemy
@@ -45,6 +46,10 @@ class Stage2 extends BaseStage {
     super.update(time, delta)
 
     this.enemyGoblin.movePlayer()
+
+    if (gameManager.getCoins() == this.maxCoins && !gameManager.getGameOver()) {
+      this.completePhase('MenuScene')
+    }
   }
 }
 
