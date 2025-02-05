@@ -2,13 +2,12 @@ import { generatePossiblePositions } from '../../entities/maze/helpers'
 import Enemy from '../../entities/enemy'
 import { MazeGridType } from '../../entities/maze/interfaces'
 import BaseStage from '../BaseStage'
-import gameManager from '../../../controls/GameManager'
 
-class Stage1 extends BaseStage {
+class Stage2 extends BaseStage {
   enemyGoblin!: Enemy
 
   constructor() {
-    super({ key: 'Stage1' })
+    super({ key: 'Stage2' })
   }
 
   preload() {
@@ -16,9 +15,9 @@ class Stage1 extends BaseStage {
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
-      [1, 2, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
       [1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
-      [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
       [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
@@ -46,11 +45,7 @@ class Stage1 extends BaseStage {
     super.update(time, delta)
 
     this.enemyGoblin.movePlayer()
-
-    if (gameManager.getCoins() == 1 && !gameManager.getGameOver()) {
-      this.completePhase('Stage2')
-    }
   }
 }
 
-export default Stage1
+export default Stage2

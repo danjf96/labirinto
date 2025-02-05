@@ -97,7 +97,7 @@ class Coin {
   loseCoin() {
     this.loseCoinSong.play()
     gameManager.removeCoin()
-    gameManager.addScore(gameManager.getScore() - this.bonus)
+    // gameManager.addScore(gameManager.getScore() - this.bonus)
 
     EventManager.emit('updateScore', {
       coins: gameManager.getCoins(),

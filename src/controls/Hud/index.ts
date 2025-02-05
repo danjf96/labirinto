@@ -37,15 +37,20 @@ class Hud {
     this.txtTimer.setX(this.scene.cameras.main.width - textBounds.width - 15)
 
     this.txtScore = this.scene.add
-      .text(this.scene.cameras.main.centerX - 15, 15, 'SCORE: 0', {
-        font: '15px emulogic',
-        color: '#fff',
-      })
+      .text(
+        this.scene.cameras.main.centerX - 15,
+        15,
+        `SCORE: ${gameManager.getScore()}`,
+        {
+          font: '15px emulogic',
+          color: '#fff',
+        },
+      )
       .setDepth(10)
   }
 
   updateScore({ coins, score }: UpdateScoreParams) {
-    this.textCoins.text = `COINS: ${coins.toString().padStart(3, '0')}`
+    this.textCoins.text = `COINS: ${coins?.toString().padStart(3, '0')}`
     this.txtScore.text = `SCORE: ${score}`
   }
 

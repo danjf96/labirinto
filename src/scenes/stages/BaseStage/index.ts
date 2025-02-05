@@ -8,6 +8,7 @@ import Maze from '../../entities/maze'
 import { MazeGridType } from '../../entities/maze/interfaces'
 import Player from '../../entities/player'
 import GameScene, { BaseStageCreateParams } from './interfaces'
+import EventManager from '../../../controls/EventManager'
 
 class BaseStage extends Phaser.Scene implements GameScene {
   maze!: Maze
@@ -17,9 +18,11 @@ class BaseStage extends Phaser.Scene implements GameScene {
   audio!: MusicPlayer
   phaseDurationTime: number = 0
   timerEvent: any
+  key!: string
 
   constructor({ key }: { key: string }) {
     super({ key })
+    this.key = key
   }
 
   preload(mazeGrid: MazeGridType) {
@@ -69,6 +72,20 @@ class BaseStage extends Phaser.Scene implements GameScene {
 
   async shutdown({ scene: { hud, tweens, anims } }: { scene: GameScene }) {
     hud.destroy()
+  }
+
+  completePhase(nextPhase: string) {
+    gameManager.setCompletePhase(this.key)
+    this.scene.pause(this.key)
+
+    var bonus = this.phaseDurationTime * 5
+    gameManager.addScore(bonus)
+    EventManager.emit('updateScore', {
+      coins: gameManager.getCoins(),
+      score: bonus,
+    })
+
+    this.scene.launch('CompleteScene', { nextPhase, bonus })
   }
 
   updateTimer() {

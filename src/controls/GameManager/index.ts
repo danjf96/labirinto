@@ -1,3 +1,4 @@
+import { StageNames } from '../../scenes/stages'
 import GameScene from '../../scenes/stages/BaseStage/interfaces'
 import Storage from '../Storage'
 
@@ -6,6 +7,7 @@ class GameManager {
   private gameOver: Boolean = false
   private highScore: number = 0
   private score: number = 0
+  private completePhases: StageNames[] = []
 
   constructor() {
     const highScore = Storage.getItem('highScore')
@@ -15,6 +17,10 @@ class GameManager {
 
   addCoin(value: number = 1): void {
     this.coins += value
+  }
+
+  setCoin(value: number): void {
+    this.coins = value
   }
 
   removeCoin(value: number = 1): void {
@@ -34,13 +40,15 @@ class GameManager {
     scene.scene.stop()
     scene.scene.start('GameOver')
     this.score = 0
-    const highScore = Storage.getItem('highScore')
-    if (highScore) this.highScore = highScore
   }
 
   restartGame() {
     this.gameOver = false
     this.coins = 0
+    const highScore = Storage.getItem('highScore')
+    if (highScore) this.highScore = highScore
+
+    this.completePhases = []
   }
 
   getGameOver(): Boolean {
@@ -65,6 +73,18 @@ class GameManager {
 
   getScore(): number {
     return this.score
+  }
+
+  setCompletePhase(phase: StageNames) {
+    this.completePhases.push(phase)
+  }
+
+  getCompletePhases() {
+    return this.completePhases
+  }
+
+  phaseIsComplete(phase: StageNames) {
+    return this.completePhases.includes(phase)
   }
 }
 
