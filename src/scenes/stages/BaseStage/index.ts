@@ -78,7 +78,6 @@ class BaseStage extends Phaser.Scene implements GameScene {
     scene: GameScene
   }) {
     scene.stop()
-    tweens.destroy()
     audio.destroy()
     hud.destroy()
   }
@@ -86,7 +85,7 @@ class BaseStage extends Phaser.Scene implements GameScene {
   completePhase(nextPhase: string) {
     gameManager.setCompletePhase(this.key)
     this.scene.pause(this.key)
-    this.audio.destroy()
+    this.audio.stop()
 
     var bonus = this.phaseDurationTime * 5
     gameManager.addScore(bonus)
@@ -95,6 +94,7 @@ class BaseStage extends Phaser.Scene implements GameScene {
       score: bonus,
     })
 
+    this.scene.stop()
     this.scene.launch('CompleteScene', { nextPhase, bonus })
   }
 

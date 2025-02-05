@@ -66,6 +66,13 @@ class GameManager {
   }
 
   addScore(score: number): void {
+    this.score += score
+    if (score > this.highScore) {
+      this.addHighScore(score)
+    }
+  }
+
+  setScore(score: number): void {
     this.score = score
     if (score > this.highScore) {
       this.addHighScore(score)

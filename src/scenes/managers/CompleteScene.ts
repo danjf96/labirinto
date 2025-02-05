@@ -14,7 +14,7 @@ class CompleteScene extends Phaser.Scene {
 
     enterKey?.on('down', () => {
       gameManager.setCoin(0)
-      //   gameManager.addScore(0)
+      this.scene.stop()
       this.scene.start(nextPhase)
     })
 
