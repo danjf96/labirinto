@@ -6,7 +6,8 @@ class MusicPlayer {
   }
 
   play(loop: boolean = false) {
-    this.music.play({ loop })
+    if (this.music.isPaused) this.music.resume()
+    else this.music.play({ loop })
   }
 
   pause() {
@@ -23,6 +24,11 @@ class MusicPlayer {
 
   onEnd(callback: () => void) {
     this.music.on('complete', callback)
+  }
+
+  destroy() {
+    this.music.stop()
+    this.music.destroy()
   }
 }
 

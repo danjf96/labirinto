@@ -37,14 +37,15 @@ class GameManager {
 
   setGameOver(gameOver: Boolean, scene: GameScene) {
     this.gameOver = gameOver
+    this.score = 0
     scene.scene.stop()
     scene.scene.start('GameOver')
-    this.score = 0
   }
 
   restartGame() {
     this.gameOver = false
     this.coins = 0
+    this.score = 0
     const highScore = Storage.getItem('highScore')
     if (highScore) this.highScore = highScore
 

@@ -70,13 +70,21 @@ class BaseStage extends Phaser.Scene implements GameScene {
     })
   }
 
-  async shutdown({ scene: { hud, tweens, anims } }: { scene: GameScene }) {
+  async shutdown({
+    scene: { hud, tweens, audio, sound, scene },
+  }: {
+    scene: GameScene
+  }) {
+    scene.stop()
+    tweens.destroy()
+    audio.destroy()
     hud.destroy()
   }
 
   completePhase(nextPhase: string) {
     gameManager.setCompletePhase(this.key)
     this.scene.pause(this.key)
+    this.audio.destroy()
 
     var bonus = this.phaseDurationTime * 5
     gameManager.addScore(bonus)
