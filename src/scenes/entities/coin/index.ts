@@ -12,7 +12,7 @@ class Coin {
   private possiblePositions: CoinPositionProps[] = []
   private emitParticles!: Phaser.GameObjects.Particles.ParticleEmitter
   private position: CoinPositionProps = { x: 0, y: 0 }
-  private bonus: number = 5
+  private valueScore: number = 5
 
   constructor(scene: GameScene) {
     this.scene = scene
@@ -80,10 +80,8 @@ class Coin {
 
   getCoin() {
     this.getCoinSong.play()
-    this.scene.player.getCoin()
     gameManager.addCoin()
-
-    gameManager.addScore(gameManager.getScore() + this.bonus)
+    gameManager.addScore(this.valueScore)
 
     EventManager.emit('updateScore', {
       coins: gameManager.getCoins(),

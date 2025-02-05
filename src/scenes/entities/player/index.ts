@@ -125,10 +125,6 @@ class Player {
     }
   }
 
-  getCoin() {
-    console.log('GET ')
-  }
-
   loseCoinWhenColide(gameObjects: Phaser.GameObjects.Sprite[]) {
     this.scene.physics.add.overlap(
       gameObjects,

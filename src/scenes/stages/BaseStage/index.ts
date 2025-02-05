@@ -35,7 +35,7 @@ class BaseStage extends Phaser.Scene implements GameScene {
     this.coin = new Coin(this)
   }
 
-  create({ phaseDurationTime = 60, maxCoins = 10 }: BaseStageCreateParams) {
+  create({ phaseDurationTime = 60, maxCoins = 1 }: BaseStageCreateParams) {
     this.maxCoins = maxCoins
     this.phaseDurationTime = phaseDurationTime
     this.hud = new Hud(this)
@@ -87,7 +87,7 @@ class BaseStage extends Phaser.Scene implements GameScene {
     this.scene.pause(this.key)
     this.audio.stop()
 
-    var bonus = this.phaseDurationTime * 5
+    var bonus = Math.floor(Math.sqrt(this.phaseDurationTime) * 5)
     gameManager.addScore(bonus)
     EventManager.emit('updateScore', {
       coins: gameManager.getCoins(),
