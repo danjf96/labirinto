@@ -62,12 +62,6 @@ labirinto/
 - Uso do Vite para um ambiente de desenvolvimento mais rápido
 - Implementação de ESLint e Prettier para manter a qualidade do código
 
-## Contribuição
-
-Sinta-se à vontade para contribuir com melhorias ou sugestões. Basta abrir uma _issue_ ou um _pull request_ neste repositório.
-
-## Licença
-
-Este projeto é distribuído sob a licença ISC.
-
 ## Imagens
+<img width="982" alt="Captura de Tela 2025-02-12 às 10 05 19" src="https://github.com/user-attachments/assets/35abcca0-fb21-4c75-85e3-94991fad94ef" />
+
