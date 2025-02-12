@@ -35,7 +35,7 @@ class BaseStage extends Phaser.Scene implements GameScene {
     this.coin = new Coin(this)
   }
 
-  create({ phaseDurationTime = 60, maxCoins = 1 }: BaseStageCreateParams) {
+  create({ phaseDurationTime = 60, maxCoins = 5 }: BaseStageCreateParams) {
     this.maxCoins = maxCoins
     this.phaseDurationTime = phaseDurationTime
     this.hud = new Hud(this)

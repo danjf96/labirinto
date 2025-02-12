@@ -32,7 +32,7 @@ class Stage2 extends BaseStage {
   }
 
   create() {
-    super.create({})
+    super.create({ maxCoins: 10 })
 
     this.maze.setCollisionsWithTheBlocks([
       this.player.getSprite(),
